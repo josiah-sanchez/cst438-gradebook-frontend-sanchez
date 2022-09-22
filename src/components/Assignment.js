@@ -46,37 +46,37 @@ class Assignment extends React.Component {
     .catch(err => console.error(err));
   }
 
-  //Add an assignment
-  addAssignment = (assignments) => {
-      const token = Cookies.get('XSRF-TOKEN');
-
-      fetch(`${SERVER_URL}/assignment`,
-          {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'X-XSRF-TOKEN': token },
-              body: JSON.stringify(assignments)
-          })
-         .then(res => {
-             if (res.ok) {
-                 toast.success("Assignment successfully added!", {
-                     position: toast.POSITION.BOTTOM_LEFT
-                 });
-                 this.fetchAssignments();
-             } else {
-                 toast.error("Error adding assignment!", {
-                     position: toast.POSITION.BOTTOM_LEFT
-                 });
-                 console.error('Post http status =' + res.status);
-             }})
-        .catch(err => {
-            toast.error("Error when adding assignment", {
-                position: toast.POSITION.BOTTOM_LEFT
-            });
-            console.error(err);
-        })
-  }
+  // //Add an assignment
+  // addAssignment = (assignments) => {
+  //     const token = Cookies.get('XSRF-TOKEN');
+  //
+  //     fetch(`${SERVER_URL}/assignment`,
+  //         {
+  //             method: 'POST',
+  //             headers: {
+  //                 'Content-Type': 'application/json',
+  //                 'X-XSRF-TOKEN': token },
+  //             body: JSON.stringify(assignments)
+  //         })
+  //        .then(res => {
+  //            if (res.ok) {
+  //                toast.success("Assignment successfully added!", {
+  //                    position: toast.POSITION.BOTTOM_LEFT
+  //                });
+  //                this.fetchAssignments();
+  //            } else {
+  //                toast.error("Error adding assignment!", {
+  //                    position: toast.POSITION.BOTTOM_LEFT
+  //                });
+  //                console.error('Post http status =' + res.status);
+  //            }})
+  //       .catch(err => {
+  //           toast.error("Error when adding assignment", {
+  //               position: toast.POSITION.BOTTOM_LEFT
+  //           });
+  //           console.error(err);
+  //       })
+  // }
 
    onRadioClick = (event) => {
     console.log("Assignment.onRadioClick " + event.target.value);
