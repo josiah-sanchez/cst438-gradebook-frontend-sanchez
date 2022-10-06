@@ -30,28 +30,6 @@ class AddAssignment extends Component {
         this.setState( {[event.target.name]: event.target.value} );
     }
 
-    fetchAssignments = () => {
-      console.log("Assignment.fetchAssignments");
-      const token = Cookies.get('XSRF-TOKEN');
-      fetch(`${SERVER_URL}/gradebook`,
-        {
-          method: 'GET',
-          headers: { 'X-XSRF-TOKEN': token }
-        } )
-      .then((response) => response.json())
-      .then((responseData) => {
-        if (Array.isArray(responseData.assignments)) {
-          //  add to each assignment an "id"  This is required by DataGrid  "id" is the row index in the data grid table
-          this.setState({ assignments: responseData.assignments.map((assignment, index) => ( { id: index, ...assignment } )) });
-        } else {
-          toast.error("Fetch failed.", {
-            position: toast.POSITION.BOTTOM_LEFT
-          });
-        }
-      })
-      .catch(err => console.error(err));
-    }
-
     handleAdd = () => {
         fetch(`${SERVER_URL}/assignment`,
             {
@@ -77,13 +55,8 @@ class AddAssignment extends Component {
                 });
                 console.error('Post http status =' + res.status);
             }})
-       .catch(err => {
-           toast.error("Error when adding assignment", {
-               position: toast.POSITION.BOTTOM_LEFT
-           });
-           console.error(err);
-       })
-    }
+       .catch(err => console.error(err));
+   }
 
     render() {
         return (

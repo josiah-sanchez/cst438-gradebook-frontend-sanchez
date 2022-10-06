@@ -117,10 +117,10 @@ class Assignment extends React.Component {
                     variant="outlined" color="primary" disabled={this.state.assignments.length===0}  style={{margin: 10}}>
               Grade
             </Button>
-            <ButtonGroup>
+            <ButtonGroup id="addAssignment">
                 <AddAssignment addAssignment={this.addAssignment} />
             </ButtonGroup>
-            <ToastContainer autoClose={1500} />
+            <ToastContainer name="message" autoClose={1500} />
           </div>
       )
   }
